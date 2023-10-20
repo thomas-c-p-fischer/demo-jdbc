@@ -10,6 +10,7 @@ public class TestConnexionJdbc {
 	/**
 	 * @param args
 	 * @throws SQLException 
+	 * @author thomas.fischer
 	 */
 	public static void main(String[] args) {
 		Connection connection = null;
@@ -19,13 +20,14 @@ public class TestConnexionJdbc {
 			System.out.println(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		try {
-			if(connection != null) {
-				connection.close();
-			}	
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} finally {
+			try {
+				if(connection != null) {
+					connection.close();
+				}	
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
