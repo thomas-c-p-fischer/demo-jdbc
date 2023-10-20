@@ -20,7 +20,7 @@ public class TestDelete {
 	 * @throws SQLException
 	 *  @author thomas.fischer
 	 */
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 
 		Connection con = null;
 		try {
@@ -30,7 +30,7 @@ public class TestDelete {
 			int requete = stt.executeUpdate("DELETE FROM FOURNISSEUR WHERE ID=4");
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
-			throw new SQLException();
+			throw new RuntimeException("Connection impossible vérifiez votre URL ou votre requête.");
 		} finally {
 			try {
 				if(con != null) {
@@ -38,7 +38,7 @@ public class TestDelete {
 				}	
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());
-				throw new SQLException();
+				throw new RuntimeException("Il n'y a pas de connection couramment établie.");
 			}
 		}
 	}

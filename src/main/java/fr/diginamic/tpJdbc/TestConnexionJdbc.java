@@ -19,14 +19,16 @@ public class TestConnexionJdbc {
 			connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/compta", "root", "");
 			System.out.println(connection);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
+			throw new RuntimeException("Connection impossible vérifiez votre URL.");
 		} finally {
 			try {
 				if(connection != null) {
 					connection.close();
 				}	
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.err.println(e.getMessage());
+				throw new RuntimeException("Il n'y a pas de connection couramment établie.");
 			}
 		}
 	}

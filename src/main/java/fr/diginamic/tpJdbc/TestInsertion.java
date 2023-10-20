@@ -21,7 +21,7 @@ public class TestInsertion {
 	 * @throws SQLException
 	 * @author thomas.fischer 
 	 */
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 		
 		Connection con = null;
 		try {
@@ -31,7 +31,7 @@ public class TestInsertion {
 			int requete = stt.executeUpdate("INSERT INTO FOURNISSEUR (ID, NOM) VALUES (4, 'GIGA')");
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
-			throw new SQLException();
+			throw new RuntimeException("Connection impossible vérifiez votre URL ou votre requête.");
 		} finally {
 			try {
 				if(con != null) {
@@ -39,7 +39,7 @@ public class TestInsertion {
 				}	
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());
-				throw new SQLException();
+				throw new RuntimeException("Il n'y a pas de connection couramment établie.");
 			}
 		}
 	}
